@@ -6,19 +6,17 @@ MEMORY_THRESHOLD=80     # Declaring variables and Assigning values
 
 # Function to check CPU usage
 check_cpu_usage() {
-    CPU_USAGE=$(top | grep "Cpu(s)" | awk '{print $2}' | cut -d. -f1)
-    if [ "$CPU_USAGE" -ge "$CPU_THRESHOLD" ]; then
-        echo "High CPU usage detected: $CPU_USAGE%"
-        # You can add alert/notification mechanisms here, like sending an email or displaying a message.
+    CPU_USAGE=$(top -bn1 | grep "Cpu(s)" | awk '{print $2}' | cut -d. -f1)    #converting o/p in batch mode to stop continous flow of information.
+    if [[ "$CPU_USAGE" -ge "$CPU_THRESHOLD" ]]; then
+        echo "High CPU usage detected: $CPU_USAGE%" | mail -s "Alert: CPU" pawanugalmugale@gmail.com    # usage is greater than 80%
     fi
 }
 
 # Function to check memory usage
 check_memory_usage() {
-    MEMORY_USAGE=$(free | grep "Mem" | awk '{print $3/$2 * 100.0}')
-    if [ "$MEMORY_USAGE" -ge "$MEMORY_THRESHOLD" ]; then
-        echo "High memory usage detected: $MEMORY_USAGE%"
-        # You can add alert/notification mechanisms here, like sending an email or displaying a message.
+    MEMORY_USAGE=$(free | grep "Mem" | awk '{print $3/$2 * 100.0}' | tr ',' '.')  #o/p is showing in commas so traslating it to make decimals
+    if [[ "$MEMORY_USAGE" -ge "$MEMORY_THRESHOLD" ]]; then
+        echo "High memory usage detected: $MEMORY_USAGE%" | mail -s "Alert: Memory" pawanugalmugale@gmail.com
     fi
 }
 
