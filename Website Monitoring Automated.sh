@@ -2,18 +2,18 @@
 
 WEBSITE_URL="https://www.google.com"  #targeted URL
 
-ALERT_EMAIL="pawanugalmugale@gmail.com"    #mail
+ALERT_EMAIL="pawanugalmugale@gmail.com"    #storing mail in variable
 
 CHECK_INTERVAL=120  # In Seconds
 
-send_email_alert() {
+send_email_alert() {                #creating function of mail send
     echo "The website $WEBSITE_URL is down at $(date)" | mail -s "Website Down Alert" "$ALERT_EMAIL"
 }
 
 # Main monitoring loop
 while true; do
     if ping -c 1 -q "$WEBSITE_URL" > /dev/null; then
-        echo "Website is up."
+        echo "Webserver is up and running."
     else
         echo "Website is down."
         send_email_alert
