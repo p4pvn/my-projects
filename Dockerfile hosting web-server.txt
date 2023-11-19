@@ -5,6 +5,5 @@ ADD https://www.free-css.com/assets/files/free-css-templates/download/page247/ki
 WORKDIR /var/www/html
 RUN unzip kindle.zip -d /var/www/html
 RUN rm -rf kindle.zip 
-RUN cp -rvf markups-kindle/* .
 CMD ["/usr/sbin/httpd", "-D", "FOREGROUND"]
 EXPOSE 80
