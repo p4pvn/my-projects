@@ -12,7 +12,7 @@ send_email_alert() {                #creating function of mail send
 
 # Main monitoring loop
 while true; do
-    if ping -c 1 -q "$WEBSITE_URL" > /dev/null; then
+    if ping -c 1 "$WEBSITE_URL" > /dev/null; then
         echo "Webserver is up and running."
     else
         echo "Website is down."
