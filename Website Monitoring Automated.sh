@@ -4,7 +4,7 @@ WEBSITE_URL="https://www.google.com"  #targeted URL
 
 ALERT_EMAIL="pawanugalmugale@gmail.com"    #storing mail in variable
 
-CHECK_INTERVAL=120  # In Seconds
+CHECK_INTERVAL=120  # check interval in Seconds
 
 send_email_alert() {                #creating function of mail send
     echo "The website $WEBSITE_URL is down at $(date)" | mail -s "Website Down Alert" "$ALERT_EMAIL"
