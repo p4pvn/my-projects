@@ -23,5 +23,5 @@ check_memory_usage() {
 while true; do
     check_cpu_usage
     check_memory_usage
-    sleep 60  # It will sleep for 60 seconds once checked and will check again after 60 seconds.
+    sleep 30  # It will sleep for 60 seconds once checked and will check again after 60 seconds.
 done
