@@ -1,5 +1,5 @@
 FROM nginx
 LABEL name pawanugalmugale@gmail.com
-WORKDIR /var/www/html
+WORKDIR /usr/share/nginx/html
 RUN COPY . .
 EXPOSE 80
