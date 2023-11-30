@@ -2,4 +2,5 @@ FROM nginx
 LABEL name pawanugalmugale@gmail.com
 WORKDIR /usr/share/nginx/html
 RUN COPY . .
+RUN rm -rf Dockerfile
 EXPOSE 80
