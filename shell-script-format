@@ -1,0 +1,22 @@
+#!/bin/bash   #shebang line or interpreter
+
+#Add all the variables you need in the script
+ name = "pawan"
+ cpu_threshold = 80
+ memory_threshold = 80
+
+#Create functions for each specific task or extracting value
+ cpu_usage_alert() {
+ cpu_usage = $(top -bn1 | grep "Cpu(s)" | awk '{print $2}' | cut -d. -f1 )
+ if [ $cpu_usage -ge $cpu_threshold ]; then
+    send_alert() || echo "HIGH USAGE DETECTED"
+ else
+    echo "checking cpu usage.."
+ fi
+ }
+
+#Add condition to when to run function.
+ while true; do
+   cpu_usage_alert()
+   sleep 60
+ done
