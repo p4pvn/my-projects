@@ -7,8 +7,8 @@
 
 #Create functions for each specific task or extracting value
  cpu_usage_alert() {
- cpu_usage = $(top -bn1 | grep "Cpu(s)" | awk '{print $2}' | cut -d. -f1 )
- if [ $cpu_usage -ge $cpu_threshold ]; then
+ cpu_usage = $(top -bn1 | grep "Cpu(s)" | awk '{print $2}' | cut -d. -f1 )   #extract value
+ if [ $cpu_usage -ge $cpu_threshold ]; then                                  #add conditions
     send_alert || echo "HIGH USAGE DETECTED"
  else
     echo "checking cpu usage.."
