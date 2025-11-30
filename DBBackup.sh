@@ -103,11 +103,11 @@ main_function 2>&1 >> "$LOGDIR/mongodbbackuptoblob_${TIME}.log"
 cd "$LOGDIR"
 
 echo "MongoDB synced successfully to Azure Blob. Please check the attached log." |
-mailx -s "MTAutoCraft Production Server - MongoDB Backup - $TODAY" \
+mailx -s "DINSHAW PROD SERVER - MongoDB Backup - $TODAY" \
       -a "$LOGDIR/mongodbbackuptoblob_${TIME}.log" $EMAILLIST > /dev/null 2>&1
 
 curl --location \
   'https://crm.alitersolutions.com/Monitoring/CroneJob/AddQadCroneJobDetails' \
   --form "blob=@${LOGDIR}/mongodbbackuptoblob_${TIME}.log" \
-  --form "metadata={\"EvolveCustomer_Code\":\"MT\",\"EvolveCustomerTenant_Code\":\"MT-PRODUCTION\",\"EvolveCroneJob_Code\":\"MONGO30BKUP\",\"EvolveCroneJob_RunTime\":\"$(date +%Y-%m-%dT%H:%M:%S)\"};type=application/json" \
+  --form "metadata={\"EvolveCustomer_Code\":\"DINSHAW\",\"EvolveCustomerTenant_Code\":\"MT-PRODUCTION\",\"EvolveCroneJob_Code\":\"MONGO30BKUP\",\"EvolveCroneJob_RunTime\":\"$(date +%Y-%m-%dT%H:%M:%S)\"};type=application/json" \
   >> "$LOGFLNM1"
